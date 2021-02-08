@@ -47,6 +47,5 @@ public class HeroesTable {
             System.out.println(e.getMessage());
         }
 
-
     }
 }
