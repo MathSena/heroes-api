@@ -45,6 +45,5 @@ public class HeroesTable {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-
     }
 }
