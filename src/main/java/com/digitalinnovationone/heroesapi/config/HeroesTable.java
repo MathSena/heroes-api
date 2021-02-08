@@ -42,7 +42,6 @@ public class HeroesTable {
                     new ProvisionedThroughput(5L, 5l));
                     table.waitForActive();
         }
-
         catch(Exception e){
             System.out.println(e.getMessage());
         }
