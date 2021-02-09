@@ -21,32 +21,25 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import static com.digitalinnovationone.heroesapi.constans.HeroesContant.REGION_DYNAMO;
 import static com.digitalinnovationone.heroesapi.constans.HeroesContant.ENDPOINT_DYNAMO;
-
 import java.security.Key;
 import java.util.Arrays;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 
-@Configuration
-@EnableDynamoDBRepositories
-public class HeroesTable {
+public class HeroesData {
     public static void main (String [] args) throws Exception{
-
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
                 .build();
-
         DynamoDB dynamoDB = new DynamoDB(client);
 
-        String tableName="Heroes_Table";
+        Table table = dynamoDB.getTable("Heroes_Table");
+        Item hero = new Item()
+                .withPrimaryKey("id", 1)
+                .withString("name", "Batman")
+                .withString("universe", "DC Comics")
+                .withNumber("films", 7);
 
-        try{
-            Table table = dynamoDB.createTable(tableName,
-                    Arrays.asList(new KeySchemaElement("id", KeyType.HASH)),
-                    Arrays.asList(new AttributeDefinition("id", ScalarAttributeType.S)),
-                    new ProvisionedThroughput(5L, 5l));
-                    table.waitForActive();
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        PutItemOutcome outcome= table.putItem(hero);
     }
 }
