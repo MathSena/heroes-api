@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@DynamoDBTable(tableName="Heroes_Table")
+@DynamoDBTable(tableName="Heroes_Table_Demo")
 
 public class Heroes {
     @Id

@@ -2,7 +2,6 @@ package com.digitalinnovationone.heroesapi.service;
 
 import com.digitalinnovationone.heroesapi.document.Heroes;
 import com.digitalinnovationone.heroesapi.repository.HeroesRepository;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
